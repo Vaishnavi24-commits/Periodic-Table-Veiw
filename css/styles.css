@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    padding-top: 90px;
+    margin: 0;
+}
+
+.navbar {
+    min-height: 80px; /* Increased height of the navbar */
+}
+
+.navbar-brand{
+    font-family: "Anybody", serif;
+    padding-right: 20px;
+}
+
+.navbar-brand-text{
+    margin-left: 20px;
+}
+
+.navbar-collapse {
+    justify-content: center; /* Center-align links when collapsed */
+    text-align: center;
+}
+
+.navbar-nav .nav-item {
+    margin: 0.5rem 0; /* Add spacing between items in collapsed view */
+}
+
+#searchRecommendations {
+    position: absolute; /* Position the recommendations below the input box */
+    top: 100%; /* Align directly below the input */
+    left: 0;
+    width: 100%; /* Match the input box width */
+    max-height: 200px; /* Limit the height */
+    overflow-y: auto; /* Add scrolling for long lists */
+    z-index: 1050; /* Ensure it appears above other elements */
+    background-color: white; /* Match dropdown background */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 0.25rem;
+}
+
+#searchRecommendations .dropdown-item {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+#searchRecommendations .dropdown-item.active {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+#searchRecommendations .dropdown-item.disabled {
+    cursor: not-allowed;
+    color: #6c757d;
+}
+
+
+
+@media (max-width: 992px) {
+    .navbar-nav {
+        align-items: center; /* Center-align the nav links */
+    }
+}
+
+.placeholder {
+    color: white;
+}
+
+.periodic-table-container, .lanthanidesAndActinides {
+    margin: 0 auto;
+    padding: 0 2%;
+    max-width: 98%;
+}
+
+.periodic-table, .lanthanidesAndActinides {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 5px;
+    padding: 10px 0;
+}
+
+.element {
+    border: 0px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    background: #f8f9fa;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.element .atomic-number {
+    font-size: 0.8rem;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.element .symbol {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 7px;
+    margin-bottom: 5px;
+}
+
+.element:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.element .name {
+    font-size: 0.9rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.element::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: calc(100% + 6px); /* Extend the pseudo-element to go beyond the border */
+    height: calc(100% + 6px); /* Extend the pseudo-element to go beyond the border */
+    border-radius: 8px; /* Match the element's border-radius */
+    border: 3px solid transparent; /* Initial transparent border */
+    background: linear-gradient(45deg, #ff416c, #ff4b2b, #ffba08, #ffe047);
+    background-size: 300% 300%; /* For gradient movement */
+    z-index: -1; /* Place the animated border behind the element */
+    animation: borderGlow 2s linear infinite; /* Animate the border */
+    opacity: 0; /* Hidden by default */
+}
+
+.element:hover::before {
+    opacity: 1; /* Show the animated border on hover */
+}
+
+@keyframes borderGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .element .name {
+        display: none; /* Hide element names on screens less than 1200px */
+    }
+
+    .periodic-table, .lanthanidesAndActinides {
+        grid-template-columns: repeat(18, minmax(50px, 1fr));
+    }
+
+    .element {
+        height: 70px;
+    }
+
+    .element .symbol {
+        font-size: 1.2rem;
+    }
+
+    .element .atomic-number {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .periodic-table, .lanthanidesAndActinides {
+        grid-template-columns: repeat(18, minmax(40px, 1fr));
+    }
+
+    .element {
+        height: 60px;
+    }
+
+    .element .symbol {
+        font-size: 1rem;
+    }
+
+    .element .atomic-number {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .periodic-table, .lanthanidesAndActinides {
+        grid-template-columns: repeat(18, minmax(30px, 1fr));
+    }
+
+    .element {
+        padding: 5px;
+        height: 50px;
+    }
+
+    .element .symbol {
+        margin-top: 10px;
+        font-size: 0.9rem;
+    }
+
+    .element .atomic-number {
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .periodic-table, .lanthanidesAndActinides {
+        grid-template-columns: repeat(18, minmax(20px, 1fr));
+    }
+
+    .element {
+        height: 40px;
+    }
+
+    .element .symbol {
+        margin-top: 10px;
+        font-size: 0.8rem;
+    }
+
+    .element .atomic-number {
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .modal-content {
+        max-width: 95%; /* Ensure modal stays within the viewport */
+        margin: auto;
+    }
+    .modal-body {
+        display: flex;
+        flex-direction: column; /* Stack content vertically */
+        align-items: center; /* Center-align content */
+    }
+    .modal-image {
+        max-width: 80%; /* Ensure the image fits within the modal */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 1rem; /* Add space below the image */
+    }
+    .table-responsive {
+        width: 100%; /* Allow the table to take the full width */
+        overflow-x: auto; /* Add horizontal scrolling for wide tables */
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 95%;
+        margin: auto;
+    }
+    .modal-body {
+        display: flex;
+        flex-direction: column; /* Stack content vertically */
+        align-items: center; /* Center content */
+    }
+    .modal-image {
+        max-width: 100%; /* Ensure image fits within the modal */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 1rem; /* Add space below the image */
+    }
+    .table-responsive {
+        width: 100%; /* Ensure table takes full width */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+}
+
+footer .container-fluid {
+    max-width: 100% !important; /* Override Bootstrap's default max-width */
+}
+
+footer {
+    width: 100vw; /* Ensure it spans the entire viewport width */
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Background color for visibility */
+    color: #fff;
+}
+
+footer .container-fluid {
+    width: 100%; /* Reset Bootstrap default behavior if needed */
+    padding: 0; /* Remove unwanted padding */
+    text-align: center; /* Center-align text for small devices */
+}
+
+footer a {
+    color: inherit;
+    text-decoration: none;
+    margin: auto 1rem;
+}
+  
+footer a {
+    background: linear-gradient(to right,rgba(100, 200, 200, 1), rgba(100, 200, 200, 1) ),linear-gradient(to right, rgba(255, 0, 0, 1),rgba(255, 0, 180, 1),rgba(0, 100, 200, 1));
+    background-size: 100% 3px, 0 3px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 400ms;
+  }
+  
+footer a:hover {
+    background-size: 0 3px, 100% 3px;
+}   
+
+/* Group Colors */
+.alkali-metal {
+    background-color: #FFB3B3; /* Light Red */
+}
+
+.alkali-metal:hover {
+    background-color: white; /* Light Red */
+    color: #FFB3B3;
+}
+
+.alkaline-earth-metal {
+    background-color: #FFE4B3; /* Light Orange */
+}
+
+.alkaline-earth-metal:hover {
+    background-color: white; /* Light Orange */
+    color: #ffb938;
+}
+
+.transition-metal {
+    background-color: #D4E4FF; /* Light Blue */
+}
+
+.transition-metal:hover {
+    background-color: white; /* Light Blue */
+    color: #5090ff;
+}
+
+.lanthanoid {
+    background-color: #FFD9FF; /* Light Pink */
+}
+
+.lanthanoid:hover {
+    background-color: white; /* Light Pink */
+    color: #ff7dff;
+}
+
+.actinoid {
+    background-color: #FFD9B3; /* Light Peach */
+}
+
+.actinoid:hover {
+    background-color: white; /* Light Peach */
+    color: #ffa954;
+}
+
+.metalloid {
+    background-color: #FFFFB3; /* Light Yellow */
+}
+
+.metalloid:hover {
+    background-color: white; /* Light Yellow */
+    color: #8b8b00;
+}
+
+.halogen {
+    background-color: #c4ffc4; /* Light Green */
+}
+
+.halogen:hover {
+    background-color: white; /* Light Green */
+    color: #60e160;
+}
+
+.noble-gas {
+    background-color: #B3FFFF; /* Light Cyan */
+}
+
+.noble-gas:hover {
+    background-color: white; /* Light Cyan */
+    color: #45dcdc;
+}
+
+.other-metal {
+    background-color: #FFC4C4; /* Light Salmon */
+}
+
+.other-metal:hover {
+    background-color: white; /* Light Salmon */
+    color: #FFC4C4;
+}
+
+.nonmetal {
+    background-color: #FFFFD4; /* Very Light Yellow */
+}
+
+.nonmetal:hover {
+    background-color: white; /* Very Light Yellow */
+    color: #6c6c40;
+}
+
+/* Add this snippet somewhere in your styles.css */
+.highlight {
+    transform: scale(1.05); /* Smoothly grow the element */
+    border: 2px solid rgb(0, 0, 0); /* Uniform border for all highlighted elements */
+    transition: transform 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+
+@keyframes highlight-animation {
+    0% {
+        box-shadow: 0 0 10px 5px yellow;
+    }
+    50% {
+        box-shadow: 0 0 20px 10px orange;
+    }
+    100% {
+        box-shadow: 0 0 10px 5px yellow;
+    }
+}
+
+.badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}

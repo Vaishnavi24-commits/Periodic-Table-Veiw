@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    background-color: #000; /* pure black */
+    color: #fff; /* white text for readability */
+}
+
+/* Override specific background colors if needed */
+body {
+    font-family: "Noto Sans", sans-serif;
+    margin: 0;
+    padding-top: 70px; /* space for fixed navbar */
+    background-color: #000; /* pure black */
+    color: #fff;
+}
+
+/* Navbar brand text color */
+.navbar-brand, .navbar-brand-text, .navbar-nav .nav-link {
+    color: #fff; /* white navbar text */
+}
+
+/* Adjust links and other text inside footer or anywhere needed */
+footer, footer a {
+    background-color: #000;
+    color: #fff;
+}
+
+/* You can also add hover color changes for links */
+footer a:hover {
+    color: #64c8c8; /* tealish hover */
+}
+
+/* If you have buttons or other elements with backgrounds, override them too */
+button, .btn {
+    background-color: #111; /* very dark grey */
+    color: #fff;
+    border: 1px solid #333;
+}
